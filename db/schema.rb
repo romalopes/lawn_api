@@ -14,20 +14,16 @@
 ActiveRecord::Schema.define(version: 20160306125041) do
 
   create_table "lawns", force: :cascade do |t|
-    t.integer  "width"
-    t.integer  "height"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer "width"
+    t.integer "height"
   end
 
   create_table "mowers", force: :cascade do |t|
-    t.integer  "x"
-    t.integer  "y"
-    t.string   "headings"
-    t.string   "commands"
-    t.integer  "lawn_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer "x"
+    t.integer "y"
+    t.string  "headings"
+    t.string  "commands"
+    t.integer "lawn_id"
   end
 
   add_index "mowers", ["lawn_id"], name: "index_mowers_on_lawn_id"

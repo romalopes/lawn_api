@@ -6,8 +6,6 @@ class CreateMowers < ActiveRecord::Migration
       t.string :headings
       t.string :commands
       t.references :lawn, index: true
-
-      t.timestamps null: false
     end
   end
 end
