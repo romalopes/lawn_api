@@ -7,7 +7,6 @@ require './lawn'
 require './mower'
 
 
-
 get "/" do
   Lawn.all.to_json
 end
