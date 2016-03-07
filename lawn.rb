@@ -28,16 +28,16 @@ class Lawn < ActiveRecord::Base
     map = {}
     map[:width] = self.width
     map[:height] =  self.height
-    mowers = []
+    mowers_array = []
     mowers.each_with_index do |mower, index|
       local_map = {}
       local_map[:x] = mower.x
       local_map[:y] = mower.y
       local_map[:headings] = mower.headings
       local_map[:commands] = mower.commands
-      mowers << local_map
+      mowers_array << local_map
     end
-    map[:mower] = mowers
+    map[:mower] = mowers_array
     map
   end
 
