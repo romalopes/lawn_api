@@ -4,9 +4,8 @@ GIT
   specs:
     database_cleaner (1.5.1)
 
-GIT
-  remote: git://github.com/romalopes/lawn_mowing.git
-  revision: 400799f4541e9112151678560499a7853d2926cc
+PATH
+  remote: lawn_mowing
   specs:
     lawn_mowing (0.1.0)
 
@@ -246,7 +245,7 @@ DEPENDENCIES
   guard-rspec (= 2.5.0)
   guard-spork (= 1.5.0)
   json
-  lawn_mowing!
+  lawn_mowing (= 0.1.0)!
   pg
   rake
   rspec-rails (= 2.13.1)

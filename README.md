@@ -9,7 +9,7 @@ Heroku
 
 
 To run locally:
- $ clone   https://github.com/romalopes/lawn_api.git
+ $ git clone   https://github.com/romalopes/lawn_api.git
  $ bundle install
 
  # To test
