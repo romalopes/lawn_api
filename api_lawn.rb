@@ -5,6 +5,16 @@ require './environments'
 require './lawn'
 require './mower'
 
+get "/renew_data_base" do 
+  Lawn.delete_all
+  Mower.delete_all
+  lawn = Lawn.create(:width=>5, :height=>5)
+  lawn.mowers.create(x:1, y:2, headings:"N", commands:"LMLMLMLMM")
+  lawn.mowers.create(x:3, y:3, headings:"E", commands:"MMRMMRMRRM")
+
+  status 200
+  return { status: "ok", lawns: Lawn.all.to_json, mowers: Mower.all.to_json}.to_json
+end
 
 get "/" do
   Lawn.all.to_json

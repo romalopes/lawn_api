@@ -5,7 +5,7 @@ GitHub
 Travis
   https://travis-ci.org/romalopes/lawn_api
 Heroku
-  http://lawn-api.herokuapp.com/
+  http://lawn-api.herokuapp.com/  (not working yet)
 
 
 To run locally:
@@ -17,3 +17,6 @@ To run locally:
 
  # To run the api web server
   	$ bundle exec ruby api_lawn.rb
+
+http://localhost:4567/renew_data_base
+http://localhost:4567/execute/:id
