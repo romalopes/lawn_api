@@ -2,7 +2,6 @@ require 'sinatra'
 require 'json'
 require 'sinatra/activerecord'
 require './environments'
-# require 'lawn_mowing'
 require './lawn'
 require './mower'
 

@@ -42,7 +42,6 @@ class Lawn < ActiveRecord::Base
   end
 
   def set_mowers_values(lawn_mowers_positions)
-  	puts "\n\n\n\n-------- #{lawn_mowers_positions}  #{lawn_mowers_positions.count}-----"
   	mowers.each_with_index do |mower, index|
   		array = lawn_mowers_positions[index + 1]
   		x = array[0]
