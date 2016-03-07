@@ -10,13 +10,6 @@ get "/" do
   Lawn.all.to_json
 end
 
-# get '/' do
-
-# puts "\n\n\n\n LawnMowing::MowingSystem:#{LawnMowing::MowingSystem.class.name}\n\n\n\n"
-# 	LawnMowing::MowingSystem.init_run_system("~/Documents/GitHub/ruby/heyyou/api_lawn/manual_mowing.txt")
-#   "Hello World #{params[:name]}".strip
-# end
-
 # list all
 get '/lawns' do
   Lawn.all.to_json
