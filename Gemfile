@@ -25,7 +25,6 @@ end
 # gem 'lawn_mowing', '0.1.0',  :path=>'lawn_mowing'
 gem 'lawn_mowing', :git => 'git://github.com/romalopes/lawn_mowing.git'
 
-
 source 'https://rubygems.org'
 ruby "2.0.0"
 
