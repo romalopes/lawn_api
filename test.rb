@@ -11,6 +11,33 @@ def app
   Sinatra::Application
 end
 
+describe "Reseting database to test" do 
+	it "/renew_data_base" do 
+		get "/renew_data_base"
+  	Lawn.count.must_equal 1
+  	Mower.count.must_equal 2
+
+  	last_response.status.must_equal 200
+		info = JSON::parse(last_response.body)
+		
+		info["status"].must_equal "ok"
+		info["lawns"][0]["width"].must_equal 5
+		info["mowers"][0]["x"].must_equal 1
+		info["mowers"][0]["headings"].must_equal "N"
+		info["mowers"][1]["x"].must_equal 3
+		info["mowers"][1]["headings"].must_equal "E"
+
+		Mower.first.x.must_equal 1
+	  Mower.first.y.must_equal 2
+	  Mower.first.headings.must_equal "N"
+	  Mower.last.x.must_equal 3
+	  Mower.last.y.must_equal 3
+	  Mower.last.headings.must_equal "E"
+
+	end
+
+end
+
 describe "Lawns" do
 
 

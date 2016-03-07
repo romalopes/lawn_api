@@ -13,7 +13,7 @@ get "/renew_data_base" do
   lawn.mowers.create(x:3, y:3, headings:"E", commands:"MMRMMRMRRM")
 
   status 200
-  return { status: "ok", lawns: Lawn.all.to_json, mowers: Mower.all.to_json}.to_json
+  return { status: "ok", lawns: Lawn.all, mowers: Mower.all}.to_json
 end
 
 get "/" do
