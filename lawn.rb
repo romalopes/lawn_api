@@ -1,7 +1,7 @@
 require 'sinatra'
 require 'sinatra/activerecord'
 require './environments'
-# require 'lawn_mowing'
+require './lawn_mowing/lawn_mowing.rb'
 
 class Lawn < ActiveRecord::Base
 	has_many :mowers
@@ -45,24 +45,29 @@ class Lawn < ActiveRecord::Base
   	puts "\n\n\n\n-------- #{lawn_mowers_positions}  #{lawn_mowers_positions.count}-----"
   	mowers.each_with_index do |mower, index|
   		array = lawn_mowers_positions[index + 1]
-  		puts "array:#{array}"
   		x = array[0]
   		y = array[1]
   		headings = array[2]
   		commands = array[3]
-
   		mower.update_attributes(x: x, y: y, headings: headings, commands: commands)
   	end
   end
 
   def execute
-    array_list = self.array_positions
-    mowing_system = LawnMowing::MowingSystem.init_run_system(array_list)
-    if mowing_system.class != String
-      lawn.set_mowers_values(mowing_system.lawn_mowers_positions)
-      return lawn.map_positions
-    else
-      return mowing_system
+    begin
+      array_list = self.array_positions
+      mowing_system = LawnMowing::MowingSystem.init_run_system(array_list)
+      if mowing_system.class != String
+        self.set_mowers_values(mowing_system.lawn_mowers_positions)
+        self.reload
+
+        return self.map_positions
+      else
+        return mowing_system
+      end
+    rescue => e 
+      puts "Error: #{e}"
+      return e
     end
   end
 end

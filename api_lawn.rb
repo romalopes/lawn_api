@@ -32,33 +32,44 @@ end
 
 # create
 post '/lawn' do
-  lawn = Lawn.new(params['lawn'])
-  lawn.save
-  status 201
+
+  lawn = Lawn.new(params[:lawn])
+  if lawn.save
+    status 201
+    lawn.to_json
+  else
+    status 304
+  end
 end
 
 # update
 put '/lawn/:id' do
   lawn = Lawn.find(params[:id])
+
   return status 404 if lawn.nil?
   lawn.update(params[:lawn])
-  lawn.save
-  status 202
+  if lawn.save
+    status 202
+    return { status: "ok" }.to_json
+  else
+    status 304
+  end
 end
 
 delete '/lawn/:id' do
-  lawer = Lawn.find(params[:id])
+  lawn = Lawn.find(params[:id])
   return status 404 if lawn.nil?
   lawn.delete
   status 202
+  return { status: "ok" }.to_json
 end
 
-
- def execute
- 		lawer = Lawn.find(params[:id])
- 		result = lawer.execute
- 		result.to_jason
-  end
+get '/execute/:id' do
+		lawn = Lawn.find(params[:id])
+		result = lawn.execute
+    status 200
+		result.to_json
+end
 
 
 
@@ -81,11 +92,14 @@ end
 post '/lawn/:id/mower' do
   lawn = Lawn.find(params[:id])
 	return status 404 if lawn.nil?
-	mower = lawn.mower.create(params[:mower])
-  if mower.errrors.empty?
-  	return status 201
+	mower = Mower.new(params[:mower])
+
+  if mower.save
+    lawn.mowers << mower
+    status 201
+    mower.to_json
   else
-  	mower.errrors.to_json
+    status 304
   end
 end
 
@@ -93,15 +107,16 @@ end
 put '/lawn/:id/mower/:mower_id' do
 	lawn = Lawn.find(params[:id])
 	return status 404 if lawn.nil?
-  mower = Lawn.mowers.find(params[:mower])
+  mower = lawn.mowers.find(params[:mower_id])
   return status 404 if mower.nil?
   if mower.update(params[:mower])
-  	mower.to_json
+    status 202
+    return { status: "ok" }.to_json
   else	
-  	mower.errors.to_json
+    status 304
+    mower.errors.to_json
   end
 end
-
 
 #delete
 delete '/lawn/:id/mower/:mower_id' do
@@ -110,4 +125,5 @@ delete '/lawn/:id/mower/:mower_id' do
   mower = lawn.mowers.find(params[:mower_id])
   mower.delete
   status 202
+  return { status: "ok" }.to_json
 end
