@@ -4,10 +4,11 @@ GIT
   specs:
     database_cleaner (1.5.1)
 
-PATH
-  remote: lawn_mowing
+GIT
+  remote: git://github.com/romalopes/lawn_mowing.git
+  revision: 400799f4541e9112151678560499a7853d2926cc
   specs:
-    law_mowing (0.1.0)
+    lawn_mowing (0.1.0)
 
 GEM
   remote: https://rubygems.org/
@@ -245,7 +246,7 @@ DEPENDENCIES
   guard-rspec (= 2.5.0)
   guard-spork (= 1.5.0)
   json
-  law_mowing (= 0.1.0)!
+  lawn_mowing!
   pg
   rake
   rspec-rails (= 2.13.1)

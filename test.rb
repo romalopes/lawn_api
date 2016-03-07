@@ -2,7 +2,7 @@ ENV['RACK_ENV'] = 'test'
 require 'minitest/autorun'
 require 'rack/test'
 # require './spec/spec_helper.rb'
-
+require 'lawn_mowing'
 
 require_relative 'api_lawn.rb'
 
@@ -30,7 +30,6 @@ end
 describe "Lawns" do
   describe " /lawns" do
     before do
-      # using the rack::test:methods, call into the sinatra app and request the following url
       get "/lawns"
     end
 

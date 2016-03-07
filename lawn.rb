@@ -1,7 +1,8 @@
 require 'sinatra'
 require 'sinatra/activerecord'
 require './environments'
-require './lawn_mowing/lawn_mowing.rb'
+# require './lawn_mowing/lawn_mowing.rb'
+require 'lawn_mowing'
 
 class Lawn < ActiveRecord::Base
 	has_many :mowers

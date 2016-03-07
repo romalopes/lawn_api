@@ -13,4 +13,7 @@ To run locally:
  $ bundle install
 
  # To test
- $ ruby test.rb
+  $ bundle exec ruby test.rb
+
+ # To run the api web server
+  $ bundle exec ruby api_lawn.rb
